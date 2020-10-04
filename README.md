@@ -27,7 +27,7 @@ After getting both indices, use a **mask** to get pixels of suspected plastics. 
 ndvi > 0.02 and ndvi < 0.24 and fdi > 0.018 and fdi < 0.067
 ```
 ## 4. Exporting Pixel Data
-Once the mask has been applied, export the pixel data into a `.txt` file (_Raster > Export > Mask Pixels_). This will be used by the Python script in [INSERT PATH HERE](insert/path/to/file).
+Once the mask has been applied, export the pixel data into a `.txt` file (_Raster > Export > Mask Pixels_). This will be used by the Python script in the root directory.
 
 ## 5. Convert to two JSON files
 After retrieving the `.txt` file from the SNAP Toolkit GUI, import the contents into a `pandas` dataframe and re-export it as JSON files: one to represent the scatter plot and another to represent a heatmap. The scatter plot representation is the latitude and longitude pixel values from the mask. The heatmap representation, on the other hand, is the same representation, but neighboring pixel values are aggregated to create the heatmap values.
