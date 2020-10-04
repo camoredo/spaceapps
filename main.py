@@ -21,16 +21,10 @@ for name in names:
     df = df[['Longitude', 'Latitude']]
     df.columns = ['lng', 'lat']
 
-    if name[:-4] == 'greece':
-        df = df.round(2)
-    else:
-        df = df.round(3)
-
-    df.drop_duplicates(inplace=True)
     print(name, df.shape)
 
     scatter_dfs.append(df)
-    heatmap_dfs.append(df.round(1).groupby(df.columns.tolist()).size().reset_index().rename(columns={0:'count'}))
+    heatmap_dfs.append(df.groupby(df.columns.tolist()).size().reset_index().rename(columns={0:'count'}))
 
 scatter_df = pd.concat(scatter_dfs)
 heatmap_df = pd.concat(heatmap_dfs)
@@ -43,5 +37,5 @@ json_heatmap_data = heatmap_df.to_json(orient="records")
 with open(os.path.join(dir_path, 'heatmap_data.json'), 'w') as f:
     f.write(json_heatmap_data)
 
-print(scatter_df)
-print(heatmap_df)
+print(scatter_df.shape)
+print(heatmap_df.shape)
