@@ -1,5 +1,3 @@
-# pip install pandas
-
 import pandas as pd
 import os
 
@@ -21,8 +19,6 @@ for name in names:
     df = df[['Longitude', 'Latitude']]
     df.columns = ['lng', 'lat']
 
-    print(name, df.shape)
-
     scatter_dfs.append(df)
     heatmap_dfs.append(df.groupby(df.columns.tolist()).size().reset_index().rename(columns={0:'count'}))
 
@@ -36,6 +32,3 @@ with open(os.path.join(dir_path, 'scatter_data.json'), 'w') as f:
 json_heatmap_data = heatmap_df.to_json(orient="records")
 with open(os.path.join(dir_path, 'heatmap_data.json'), 'w') as f:
     f.write(json_heatmap_data)
-
-print(scatter_df.shape)
-print(heatmap_df.shape)
